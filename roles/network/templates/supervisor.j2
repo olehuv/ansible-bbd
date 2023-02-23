@@ -1,0 +1,11 @@
+[program:pythonapp]
+directory={{ app_path }}
+command={{ venv_path }}/bin/honcho start -f ./Procfile worker bookshelf
+autostart=true
+autorestart=true
+user={{ app_user_name }}
+# Environment variables ensure that the application runs inside of the
+# configured virtualenv.
+environment=VIRTUAL_ENV="{{ venv_path }}",PATH="{{ venv_path }}/bin",HOME="{{ app_user_home }}",USER="{{ app_user_name }}"
+stdout_logfile=syslog
+stderr_logfile=syslog

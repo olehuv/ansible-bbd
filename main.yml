@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  connection: local
+  become: true
+  gather_facts: false
+  
+  vars_files:
+    - vars/all.yml
+  
+  roles:
+    - role: apt_install
+    - role: apt_update
+    

@@ -1,0 +1,11 @@
+---
+# Install software from apt
+- name: Install 
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+    install_recommends: no
+    update_cache: yes
+  loop:
+    - fail2ban
+    - zsh
