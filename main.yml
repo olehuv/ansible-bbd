@@ -1,5 +1,5 @@
 ---
-- hosts: KBKDATASRV01
+- hosts: bbdservers
   become: true
   gather_facts: true 
   
@@ -9,4 +9,3 @@
   roles:
     - role: apt_install
     - role: apt_update
-    
