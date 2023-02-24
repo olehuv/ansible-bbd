@@ -1,8 +1,7 @@
 ---
-- hosts: localhost
-  connection: local
+- hosts: KBKDATASRV01
   become: true
-  gather_facts: false
+  gather_facts: true 
   
   vars_files:
     - vars/all.yml
