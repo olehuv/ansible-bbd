@@ -4,11 +4,11 @@
     update_cache: yes
     cache_valid_time: 3600
 
-- name: Upgradable package nummber
+- name: Check for updates
   ansible.builtin.shell: apt list --upgradable | wc -l
   register: result
 
-- name: Install updates if more then 5 
+- name: Install updates
   ansible.builtin.apt:
     upgrade: yes
   #  when: result.stdout > 50*

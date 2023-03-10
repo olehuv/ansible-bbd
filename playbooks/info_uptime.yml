@@ -18,6 +18,7 @@
     - name: some system info before update
       debug: 
         msg:
-        - " {{ upgradableinfo.stdout }} updates can be applied immediately "
-        - " it is {{ dateinfo.stdout }} "
-        - " system is up without reboot for {{ uptimeinfo.stdout }} "
+        - "There are {{ upgradableinfo.stdout }} updates can be applied immediately"
+        - "System is {{ uptimeinfo.stdout }} without reboot"
+        - "It is {{ dateinfo.stdout }} system data"
+        
