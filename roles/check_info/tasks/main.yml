@@ -1,0 +1,24 @@
+---
+- name: some info
+  become: yes
+  tasks:
+  - debug:
+      var: ansible_all_ipv4_addresses
+  - shell: ip r
+    register: results
+  - debug:
+      var: results.stdout_lines
+  - debug: var=ansible_os_family
+
+- name: Get server uptime
+  tasks:
+    - name: Get uptime first
+      shell: uptime
+      register: hello
+    - debug: msg="{{ hello.stdout }}"
+    - debug: msg="{{ hello.stderr }}"
+    - name: Get date second
+      shell: date
+      register: hello
+    - debug: msg="{{ hello.stdout }}"
+    - debug: msg="{{ hello.stderr }}"
