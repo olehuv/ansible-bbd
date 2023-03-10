@@ -4,8 +4,8 @@
   gather_facts: false
   tasks:
     - name: Get uptime info
-      shell: uptime -p
-      register: uptimeinfo
+      shell: /usr/bin/uptime -p
+      register: uptimeinfo 
 
     - name: Get date info
       shell: date

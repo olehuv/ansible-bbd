@@ -5,13 +5,13 @@
     cache_valid_time: 3600
 
 - name: Upgradable package nummber
-  shell: apt list --upgradable | wc -l
+  ansible.builtin.shell: apt list --upgradable | wc -l
   register: result
 
-- name: Pass options to dpkg on run
+- name: Install updates if more then 5 
   ansible.builtin.apt:
     upgrade: yes
-  when: result.stdout > 50
+    when: result.stdout > 50*
 
 - name: Remove useless packages from the cache
   ansible.builtin.apt:
