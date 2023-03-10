@@ -1,20 +1,27 @@
 ---
 - name: Get server uptime
   hosts: KBKDATASRV01
+  gather_facts: false
   tasks:
     - name: Get uptime info
       shell: uptime
       register: uptimeinfo
-    
+
+    - debug: msg="{{ uptimeinfo.stdout }}"
+
     - name: Get date info
       shell: date
       register: datainfo
 
-    - name: upgradable package nummber
-      shell: apt list --upgradable | wc -l
-      register: upgradable
-
-    - debug: msg="{{ uptimeinfo.stdout }}"
     - debug: msg="{{ datainfo.stdout }}"
-    - debug: msg="{{ upgradable.stdout }}"
 
+    - name: Upgradable package nummber
+      shell: apt list --upgradable | wc -l
+      register: upgradableinfo
+
+    - name: Print return information from the previous task
+      debug:
+        var: upgradableinfo
+        verbosity: 2
+
+    - debug: msg="{{ upgradableinfo.stdout }}"

@@ -7,6 +7,7 @@
 - name: Pass options to dpkg on run
   ansible.builtin.apt:
     upgrade: yes
+  when: 
 
 - name: Remove useless packages from the cache
   ansible.builtin.apt:
