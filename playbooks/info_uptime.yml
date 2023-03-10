@@ -2,19 +2,19 @@
 - name: Get server uptime
   hosts: KBKDATASRV01
   tasks:
-    - name: Get uptime first
+    - name: Get uptime info
       shell: uptime
-      register: hello
-    - debug: msg="{{ hello.stdout }}"
-    - debug: msg="{{ hello.stderr }}"
-    - name: Get date second
+      register: uptimeinfo
+    
+    - name: Get date info
       shell: date
-      register: hello
-    - debug: msg="{{ hello.stdout }}"
-    - debug: msg="{{ hello.stderr }}"
+      register: datainfo
 
     - name: upgradable package nummber
       shell: apt list --upgradable | wc -l
       register: upgradable
+
+    - debug: msg="{{ uptimeinfo.stdout }}"
+    - debug: msg="{{ datainfo.stdout }}"
     - debug: msg="{{ upgradable.stdout }}"
-    - debug: msg="{{ upgradable.stderr }}"
+
