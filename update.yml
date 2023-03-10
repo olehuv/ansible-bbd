@@ -9,4 +9,3 @@
   roles:
     - role: apt_install
     - role: apt_update
-      when: result.stdout > 50*
