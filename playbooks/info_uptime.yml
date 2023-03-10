@@ -12,3 +12,9 @@
       register: hello
     - debug: msg="{{ hello.stdout }}"
     - debug: msg="{{ hello.stderr }}"
+
+    - name: upgradable package nummber
+      shell: apt list --upgradable | wc -l
+      register: upgradable
+    - debug: msg="{{ upgradable.stdout }}"
+    - debug: msg="{{ upgradable.stderr }}"
