@@ -1,0 +1,12 @@
+---
+- name: some info
+  hosts: KBKDATASRV01
+  become: yes
+  tasks:
+  - debug:
+      var:  ansible_all_ipv4_addresses
+  - shell: ip r
+    register: results
+  - debug:
+      var: results.stdout_lines
+  - debug: var=ansible_os_family
