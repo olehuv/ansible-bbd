@@ -4,7 +4,7 @@
   gather_facts: false
   tasks:
     - name: Get uptime info
-      shell: /usr/bin/uptime
+      shell: uptime -p
       register: uptimeinfo
 
     - name: Get date info
@@ -15,9 +15,9 @@
       shell: apt list --upgradable | wc -l
       register: upgradableinfo
       
-    - name: info
+    - name: some system info before update
       debug: 
         msg:
-        - " {{ upgradableinfo.stdout }} updates can be applied immediately"
-        - "it is {{ dateinfo.stdout }} "
-        - "and system working without reboot for {{ uptimeinfo.stdout }} "
+        - " {{ upgradableinfo.stdout }} updates can be applied immediately "
+        - " it is {{ dateinfo.stdout }} "
+        - " system is up without reboot for {{ uptimeinfo.stdout }} "
