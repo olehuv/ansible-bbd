@@ -1,19 +1,17 @@
 ---
-- name: Get server uptime
+- name: Get server info about data, uptime and updates
   hosts: KBKDATASRV01
   gather_facts: false
   tasks:
     - name: Get uptime info
-      shell: uptime
+      shell: /usr/bin/uptime
       register: uptimeinfo
-
     - debug: msg="{{ uptimeinfo.stdout }}"
 
     - name: Get date info
       shell: date
-      register: datainfo
-
-    - debug: msg="{{ datainfo.stdout }}"
+      register: dateinfo
+    - debug: msg="{{ dateinfo.stdout }}"
 
     - name: Upgradable package nummber
       shell: apt list --upgradable | wc -l
@@ -24,4 +22,8 @@
         var: upgradableinfo
         verbosity: 2
 
-    - debug: msg="{{ upgradableinfo.stdout }}"
+    - name: total
+      debug: 
+        msg:
+        - "{{ upgradableinfo.stdout }} updates can be applied immediately"
+        - "it is {{ ansible_date_time }}"
