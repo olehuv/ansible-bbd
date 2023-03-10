@@ -6,24 +6,18 @@
     - name: Get uptime info
       shell: /usr/bin/uptime
       register: uptimeinfo
-    - debug: msg="{{ uptimeinfo.stdout }}"
 
     - name: Get date info
       shell: date
       register: dateinfo
-    - debug: msg="{{ dateinfo.stdout }}"
 
     - name: Upgradable package nummber
       shell: apt list --upgradable | wc -l
       register: upgradableinfo
-
-    - name: Print return information from the previous task
-      debug:
-        var: upgradableinfo
-        verbosity: 2
-
-    - name: total
+      
+    - name: total info
       debug: 
         msg:
         - "{{ upgradableinfo.stdout }} updates can be applied immediately"
-        - "it is {{ ansible_date_time }}"
+        - "it is {{ dateinfo.stdout }} "
+        - "and system working without reboot for {{ uptime.stdout }} "

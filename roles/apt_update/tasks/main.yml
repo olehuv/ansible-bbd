@@ -4,9 +4,18 @@
     update_cache: yes
     cache_valid_time: 3600
 
+- name: Upgradable package nummber
+    shell: apt list --upgradable | wc -l
+    register: result
+
+- name: debug
+  debug:    
+    var: result
+
 - name: Pass options to dpkg on run
   ansible.builtin.apt:
     upgrade: yes
+  when: var=result > 50
 
 - name: Remove useless packages from the cache
   ansible.builtin.apt:
