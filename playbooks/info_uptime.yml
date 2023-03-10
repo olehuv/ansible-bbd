@@ -20,4 +20,4 @@
         msg:
         - " {{ upgradableinfo.stdout }} updates can be applied immediately"
         - "it is {{ dateinfo.stdout }} "
-        - "and system working without reboot for {{ uptime.stdout }} "
+        - "and system working without reboot for {{ uptimeinfo.stdout }} "
