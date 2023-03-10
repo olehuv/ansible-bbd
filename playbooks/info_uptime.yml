@@ -1,6 +1,6 @@
 ---
 - name: Get server uptime
-  hosts: ubuntu_srv_ALL
+  hosts: KBKDATASRV01
   tasks:
     - name: Get uptime first
       shell: uptime

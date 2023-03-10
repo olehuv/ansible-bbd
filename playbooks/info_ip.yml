@@ -1,7 +1,7 @@
 ---
 - name: some info
   hosts: KBKDATASRV01
-  become: yes
+  become: true
   tasks:
   - debug:
       var:  ansible_all_ipv4_addresses
